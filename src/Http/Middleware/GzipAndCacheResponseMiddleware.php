@@ -22,20 +22,10 @@ class GzipAndCacheResponseMiddleware
     protected $_cache_full_path_name = '';
     protected $_cache_hit = false;
     
-    /**
-     * The html minifier instance.
-     *
-     * @var \GrahamCampbell\HTMLMin\Minifiers\HtmlMinifier
-     */
+
     protected $_gzip_and_cache_response;
 
-    /**
-     * Create a new minify middleware instance.
-     *
-     * @param \Johan Zandstra\HTMLMin\Minifiers\HtmlMinifier $html
-     *
-     * @return void
-     */
+
 
     public function __construct(GzipAndCacheResponse $_gzip_and_cache_response)
     {
