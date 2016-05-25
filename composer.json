@@ -1,0 +1,19 @@
+{
+    "name": "johan-zandstra/gzip-and-cache-response",
+    "description": "GzipAndCacheResponse is A Simple html response Gzipper and provides a simple caching mechanism",
+    "keywords": ["laravel", "framework", "html", "cache", "Laravel", "resonse", "Speedup", "page speed", "page load", "gzip-and-cache-html-response", "Dolphiq", "Johan Zandstra"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Johan Zandstra",
+            "email": "johan@dolphiq.nl"
+        }
+    ],
+    "require": {},
+	"autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Dolphiq\\GzipAndCacheResponse\\": "src/"
+        }
+    }    
+}
