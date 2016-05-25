@@ -1,6 +1,6 @@
 {
     "name": "dolphiq/gzip-and-cache-response",
-    "version": "1.0.0"
+    "version": "1.0.0",
     "description": "GzipAndCacheResponse is A Simple html response Gzipper and provides a simple caching mechanism",
     "keywords": ["laravel", "framework", "html", "cache", "Laravel", "resonse", "Speedup", "page speed", "page load", "gzip-and-cache-html-response", "Dolphiq", "Johan Zandstra"],
     "license": "MIT",
