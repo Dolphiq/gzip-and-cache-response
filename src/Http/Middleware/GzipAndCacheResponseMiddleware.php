@@ -19,6 +19,7 @@ class GzipAndCacheResponseMiddleware
      
     protected $_cache_next_request = false;
     protected $_cache_file_name = '';
+    protected $_cache_sub_path_name = 'app/dolphiq/htmlcache';
     protected $_cache_full_path_name = '';
     protected $_cache_hit = false;
     
@@ -49,7 +50,7 @@ class GzipAndCacheResponseMiddleware
 			// we also can use; $request->path(); .. 
 			
 		    $this->_cache_file_name = md5($request->url()).'.gz';
-			$this->_cache_full_path_name = storage_path('app/dolphiq/htmlcache/' . $this->_cache_file_name);
+			$this->_cache_full_path_name = storage_path($this->_cache_sub_path_name .'/' . $this->_cache_file_name);
 			
 			// default false
 			$this->_cache_hit=false;
@@ -136,13 +137,18 @@ class GzipAndCacheResponseMiddleware
 			// we also can use; $request->path(); .. 
 				    
 		    $this->_cache_file_name = md5($request->url()).'.gz';
-			$this->_cache_full_path_name = storage_path('app/dolphiq/htmlcache/' . $this->_cache_file_name);		
+			$this->_cache_full_path_name = storage_path($this->_cache_sub_path_name .'/'  . $this->_cache_file_name);		
 			{
 				$this->_cache_next_request=true;
 								
 				if($this->_cache_next_request==true) {
  
-					// \File::put($this->_cache_full_path_name,$response->content());
+					// check if folder exists
+					if(!\File::exists(storage_path($this->_cache_sub_path_name))) {
+						\File::makeDirectory(storage_path($this->_cache_sub_path_name), $mode = 0777, true, true);
+					}
+					
+					
 					\File::put($this->_cache_full_path_name,gzencode($response->content(),9));
 					
 				}     
