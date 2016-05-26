@@ -88,7 +88,7 @@ class GzipAndCacheResponseMiddleware
 				
 				
 				// please flush to browser, and re-fetch if needed
-				if($difference>10) { // more than a minute old, please re fetch after sent to browser
+				if($difference>60) { // more than 60 seconds old, please re fetch after sent to browser
 				
 					\File::delete($this->_cache_full_path_name);
 					
@@ -109,12 +109,6 @@ class GzipAndCacheResponseMiddleware
 				if($this->_cache_next_request==true) {
 					$response=$response->header('Html-Cache-Stored', 'true');   
 					$response=$response->header('Html-Cache-File', $this->_cache_file_name);   
-					// \File::put($this->_cache_full_path_name,$response->content());
-					//\File::put($this->_cache_full_path_name,gzencode($response->content(),9));
-					
-					//$encoded_html = gzencode(Model::all(), 9);
-					//header('Content-Length: ' . strlen($encoded_html));
-					//header('Content-Encoding: gzip');
 				}
 				
 				return $response;				
@@ -145,9 +139,7 @@ class GzipAndCacheResponseMiddleware
 			$this->_cache_full_path_name = storage_path('app/dolphiq/htmlcache/' . $this->_cache_file_name);		
 			{
 				$this->_cache_next_request=true;
-					
-				//$response = $next($request)->header('Html-Cache-Hit', 'false');   
-				
+								
 				if($this->_cache_next_request==true) {
  
 					// \File::put($this->_cache_full_path_name,$response->content());
